@@ -16,8 +16,9 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
     mg_http_serve_dir(c, hm, &opts);
     return;
   }
-  else if (mg_http_match_uri(hm, "/api")) {
-    mg_http_reply(c, 200, "Content-Type: application/json\r\n", "{\"status\": \"ok\"}");
+  
+  if (mg_http_match_uri(hm, "/api")) {
+    mg_http_reply(c, 200, "Content-Type: application/xml\r\n", "<?xml version=\"1.0\" encoding=\"utf-8\"?><response><status>ok</status></response>");
     return;
   }
 
